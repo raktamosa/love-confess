@@ -410,7 +410,7 @@
     const tick = () => {
       if (tok !== seq || state !== 'walking') return;
       const elapsed = performance.now() - t0;
-      if (elapsed > dur + 120) return;
+      if (elapsed > dur - 100) return;
       k++;
       tuk(0.1 + 0.22 * Math.min(1, elapsed / dur), k);
       stepTimer = setTimeout(tick, Math.max(0, t0 + (k + 1) * 550 - performance.now()));
@@ -444,9 +444,10 @@
     const dur = reduced ? 1 : 4400;
     const walk = hero.animate([
       { transform: 'translateX(' + -dist + 'px) scale(.6)', opacity: 0 },
-      { transform: 'translateX(' + -dist * 0.88 + 'px) scale(.62)', opacity: 1, offset: 0.08 },
+      { transform: 'translateX(' + -dist * 0.88 + 'px) scale(.62)', opacity: 1, offset: 0.08, easing: 'linear' },
+      { transform: 'translateX(' + -dist * 0.05 + 'px) scale(.97)', opacity: 1, offset: 0.92, easing: 'ease-out' },
       { transform: 'translateX(0) scale(1)', opacity: 1 }
-    ], { duration: dur, easing: 'cubic-bezier(.3,.55,.35,1)', fill: 'both' });
+    ], { duration: dur, easing: 'linear', fill: 'both' });
     startSteps(tok, dur);
     await walk.finished.catch(() => {});
     if (tok !== seq) return;

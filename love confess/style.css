@@ -385,11 +385,12 @@ body[data-screen="p4"] .icon-btn {
 .leg--l { transform-origin: 149px 320px; }
 .leg--r { transform-origin: 171px 320px; }
 
-.is-walking .leg--l { animation: step .55s ease-in-out infinite alternate; }
-.is-walking .leg--r { animation: step .55s ease-in-out infinite alternate-reverse; }
-@keyframes step { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+/* langkah kaki: 4 putaran penuh (1.1s) = 4.4s, pas dengan lama jalan, jadi berhenti di posisi lurus saat orangnya sampai */
+.is-walking .leg--l { animation: stride 1.1s ease-in-out 0s 4; }
+.is-walking .leg--r { animation: stride 1.1s ease-in-out -.55s 4.5; }
+@keyframes stride { 0%, 50%, 100% { transform: rotate(0); } 25% { transform: rotate(22deg); } 75% { transform: rotate(-22deg); } }
 
-.is-walking .upper { animation: bob .275s ease-in-out infinite alternate; }
+.is-walking .upper { animation: bob .275s ease-in-out 16 alternate; }
 @keyframes bob { to { transform: translateY(-4px); } }
 .is-waiting .upper { animation: breathe 2.6s ease-in-out infinite alternate; }
 @keyframes breathe { to { transform: translateY(-3px); } }
@@ -397,8 +398,8 @@ body[data-screen="p4"] .icon-btn {
 .bq, .held { transform-box: view-box; transform-origin: 162px 290px; }
 .bq { transition: transform .5s var(--ease), opacity .35s; }
 .bq-sway { transform-box: view-box; transform-origin: 160px 300px; }
-.is-walking .bq-sway { animation: sway .55s ease-in-out infinite alternate; }
-@keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.is-walking .bq-sway { animation: sway 1.1s ease-in-out 4; }
+@keyframes sway { 0%, 50%, 100% { transform: rotate(0); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
 .is-waiting .bq-sway { animation: bqPulse 1.2s ease-in-out infinite; }
 @keyframes bqPulse { 50% { transform: scale(1.05); } }
 .has-letter .bq { transform: scale(.2); opacity: 0; }
@@ -672,11 +673,12 @@ body[data-screen="p4"] .icon-btn {
 
 .shoe { transform-box: fill-box; transform-origin: center; transition: transform .35s var(--ease); }
 .is-walking .shoe { transform: translateX(9px) scaleX(1.12); }
-.is-walking .leg--l .shoe { animation: shoeFlat .55s ease-in-out infinite alternate; }
-.is-walking .leg--r .shoe { animation: shoeFlat .55s ease-in-out infinite alternate-reverse; }
+.is-walking .leg--l .shoe { animation: shoeFlat 1.1s ease-in-out 0s 4; }
+.is-walking .leg--r .shoe { animation: shoeFlat 1.1s ease-in-out -.55s 4.5; }
 @keyframes shoeFlat {
-  from { transform: translateX(9px) scaleX(1.12) rotate(22deg); }
-  to   { transform: translateX(9px) scaleX(1.12) rotate(-22deg); }
+  0%, 50%, 100% { transform: translateX(9px) scaleX(1.12) rotate(0); }
+  25% { transform: translateX(9px) scaleX(1.12) rotate(-22deg); }
+  75% { transform: translateX(9px) scaleX(1.12) rotate(22deg); }
 }
 .face { transition: transform .4s var(--ease); }
 .is-walking .face { transform: translateX(9px); }
