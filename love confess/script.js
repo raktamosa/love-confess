@@ -637,7 +637,9 @@
         if (tok !== letterTok) return;
         node.data += chars[i];
         rest.textContent = chars.slice(i + 1).join('');
-        letterBody.scrollTop = letterBody.scrollHeight;
+        const br = letterBody.getBoundingClientRect();
+        const cr = cur.getBoundingClientRect();
+        if (cr.bottom > br.bottom - 8) letterBody.scrollTop += cr.bottom - br.bottom + 8;
         await sleep(/[.,!?]/.test(chars[i]) ? TYPING * 6 : TYPING);
       }
       cur.remove();

@@ -529,7 +529,7 @@ body[data-screen="p4"] .icon-btn {
 .letter__to { font: italic 400 26px/1.2 var(--serif); margin-bottom: 4px; }
 .letter__body { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
 .letter__body::-webkit-scrollbar { display: none; }
-.letter__body p { margin-top: 12px; font: italic 400 19px/1.65 var(--serif); color: #474747; }
+.letter__body p { margin-top: 10px; font: italic 400 17px/1.6 var(--serif); color: #474747; }
 .cursor {
   display: inline;               
   margin-left: 2px;
