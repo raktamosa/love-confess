@@ -7,7 +7,7 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const rnd = (a, b) => a + Math.random() * (b - a);
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = false;
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
   const app = $('#app');
